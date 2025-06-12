@@ -18,8 +18,8 @@
 
   // Define GIR files to preload. Ensure these files are in your public/gir/ directory.
   const PRELOAD_FILES: string[] = [
-    'gir/Babl-0.1.gir',
-    'gir/Gegl-0.4.gir',
+    // 'gir/Babl-0.1.gir',
+    // 'gir/Gegl-0.4.gir',
     'gir/Gimp-3.0.gir',
     'gir/GimpUi-3.0.gir',
     'gir/Gtk-3.0.gir',
