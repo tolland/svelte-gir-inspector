@@ -47,11 +47,20 @@
     //dispatch('selectElement', event.detail);
   }
 </script>
+<!--
+  @component
+
+  ElementList is a component to represent collected children of elements
+  such as classes, interfaces, for the UI representation
+
+
+
+-->
 
 {#if elements && elements.length > 0}
   <li class="element-list-{typeLabel}-li-wrapper my-1">
     <div
-      class="flex items-center p-1.5 rounded-md hover:bg-slate-200 cursor-pointer text-sm font-semibold text-slate-700"
+      class="element-list-div  flex items-center p-1.5 rounded-md hover:bg-slate-200 cursor-pointer text-sm font-semibold text-slate-700"
       role="button"
       tabindex="0"
       onclick={onClickToggle}

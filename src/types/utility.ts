@@ -1,5 +1,4 @@
-
-
+// src/types/utility.ts
 import type {
   GirAlias,
   GirCallback,
@@ -28,9 +27,9 @@ import {GirElementKind} from "./base";
 */
 
 export interface SelectedItem {
-  type: string; // e.g., "Class", "Function", "Property"
-  item: GirAnyElement;
-  filePath: string; // Path to the item, e.g. "fileName.namespaceName.className.methodName"
+  type: string;
+  item: GirDisplayableElement;
+  filePath: string;
 }
 
 export interface SearchResult extends SelectedItem {}
@@ -59,24 +58,83 @@ export type GirAnyElement =
   | GirCallback
   | GirMember;
 
-// export type GirComplexElement = GirClass | GirInterface | GirRecord;
+export type GirDisplayableElement =
+  | GirClass
+  | GirInterface
+  | GirRecord
+  | GirEnum
+  | GirFunction
+  | GirMethod
+  | GirConstructor
+  | GirProperty
+  | GirField
+  | GirSignal
+  | GirCallback
+  | GirConstant
+  | GirAlias;
 
-export const GirComplexKinds = new Set([
-  GirElementKind.Class,
-  GirElementKind.Interface,
-  GirElementKind.Record
-]);
+// Simplified complex element detection using kinds
+export type GirComplexElement = GirClass | GirInterface | GirRecord;
 
-export type GirComplexElement = Extract<GirAnyElement, { kind: GirElementKind.Class | GirElementKind.Interface | GirElementKind.Record }>;
-
-export function isComplexElement(e: GirAnyElement): e is GirComplexElement {
-  return GirComplexKinds.has(e.kind);
+export function isDisplayableElement(element: GirAnyElement): element is GirDisplayableElement {
+  switch (element.kind) {
+    case GirElementKind.Class:
+    case GirElementKind.Interface:
+    case GirElementKind.Record:
+    case GirElementKind.Enum:
+    case GirElementKind.Function:
+    case GirElementKind.Method:
+    case GirElementKind.Constructor:
+    case GirElementKind.Property:
+    case GirElementKind.Field:
+    case GirElementKind.Signal:
+    case GirElementKind.Callback:
+    case GirElementKind.Constant:
+    case GirElementKind.Alias:
+      return true;
+    default:
+      return false;
+  }
 }
 
-// const componentMap: Record<GirElementKind, typeof SvelteComponent> = {
-//   [GirElementKind.Class]: ClassRenderer,
-//   [GirElementKind.Interface]: InterfaceRenderer,
-//   [GirElementKind.Record]: RecordRenderer,
-//   [GirElementKind.Enum]: EnumRenderer,
-//   // ...
-// };
+export function isGirClass(item: GirAnyElement): item is GirClass {
+  return item.kind === GirElementKind.Class;
+}
+
+
+export function isComplexElement(element: GirAnyElement): element is GirComplexElement {
+  return element.kind === GirElementKind.Class ||
+         element.kind === GirElementKind.Interface ||
+         element.kind === GirElementKind.Record;
+}
+
+// Helper functions for kind-based logic
+export function isCallable(element: GirAnyElement): element is GirFunction | GirMethod | GirConstructor | GirCallback {
+  return element.kind === GirElementKind.Function ||
+         element.kind === GirElementKind.Method ||
+         element.kind === GirElementKind.Constructor ||
+         element.kind === GirElementKind.Callback;
+}
+
+export function hasChildren(element: GirAnyElement): boolean {
+  return isComplexElement(element) || element.kind === GirElementKind.Namespace;
+}
+
+// Component mapping using kinds
+export function getComponentForKind(kind: GirElementKind): string {
+  switch (kind) {
+    case GirElementKind.Class:
+    case GirElementKind.Interface:
+    case GirElementKind.Record:
+      return 'ComplexTypeRenderer';
+    case GirElementKind.Enum:
+      return 'EnumRenderer';
+    case GirElementKind.Function:
+    case GirElementKind.Method:
+    case GirElementKind.Constructor:
+    case GirElementKind.Callback:
+      return 'CallableRenderer';
+    default:
+      return 'SimpleRenderer';
+  }
+}

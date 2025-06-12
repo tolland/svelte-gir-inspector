@@ -286,9 +286,12 @@
             {searchTerm}
           />
         </div>
+
+        <!-- Content area -->
         <div class="w-1/4 bg-white rounded-lg shadow-lg overflow-hidden min-h-[200px] h-[30vh]">
           <GirElementDetails {selectedItem} />
         </div>
+        <!-- end of content area -->
       </div>
     {:else if layout === 'detail'}
       <!-- Detail Only Layout -->

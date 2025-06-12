@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type {Snippet} from 'svelte'
   import {CodeBracketIcon, FileIcon} from './icons';
   import {getIcon} from "../utils";
   import Namespace from "./Namespace.svelte";
@@ -19,8 +18,7 @@
     toggle?: (selectedItem: SelectedItem) => void;
     select?: (selectedItem: SelectedItem) => void;
     activeIndex?: number;
-    children?: Snippet;
-  } & Record<string, Snippet | any>;
+  }
 
   let {
     repo,
@@ -36,11 +34,9 @@
     toggle,
     select,
     activeIndex = $bindable(-1),
-    children,
-    ...snippetProps
   }: Props = $props();
 
-  const snippets = Object.values(snippetProps).filter(v => typeof v === 'function');
+  // const snippets = Object.values(snippetProps).filter(v => typeof v === 'function');
 
   let Icon = $derived(getIcon(typeLabel));
   let iconColor = $derived(typeLabel === 'Method' ? 'text-blue-500' : typeLabel === 'Function' ? 'text-green-500' : 'text-slate-500');
@@ -52,10 +48,6 @@
   <span class="inline align-text-bottom mr-2">{@html FileIcon()}</span>
   {repo.fileName}
 </h2>
-
-repository
-
-kind: "{repo.kind}"
 
 <ul>
   {#each repo.namespaces as ns (ns.id)}

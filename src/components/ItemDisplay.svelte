@@ -1,11 +1,13 @@
 <script lang="ts">
   import type {GirAnyElement, SelectedItem} from '../types';
-  import type {Snippet} from 'svelte'
+  import {isComplexElement, isDisplayableElement} from '../types';
   import {ChevronDownIcon, ChevronRightIcon} from "./icons";
   import {getIcon} from "../utils";
   import {type Icon as IconType} from '@lucide/svelte';
   import ComplexTypeItems from "./ComplexTypeItems.svelte";
-  import {isComplexElement} from "../util/guards";
+  import {hasChildren as itemHasChildren} from "../types/utility";
+  import {selectedItem} from '../stores';
+  // import { selectedItem } from '../shared.js';
 
   type Props = {
     activeIndex?: number;
@@ -21,8 +23,7 @@
     isLeaf?: boolean;
     toggle?: (selectedItem: SelectedItem) => void;
     select?: (selectedItem: SelectedItem) => void;
-    children?: Snippet;
-  } & Record<string, Snippet | any>;
+  };
 
   let {
     item,
@@ -38,20 +39,21 @@
     toggle,
     select,
     activeIndex = $bindable(-1),
-    children,
-    ...snippetProps
   }: Props = $props();
 
-  const snippets = Object.values(snippetProps).filter(v => typeof v === 'function');
-
+  hasChildren = itemHasChildren(item);
   let isOpen = $state(defaultOpen);
 
   const handleSelect = (e: MouseEvent | KeyboardEvent) => {
     e.stopPropagation();
-    console.log('Item selected:', item.name);
-    console.log('Type label:', typeLabel);
-    console.log('File path:', filePath);
-    select && select({item, type: typeLabel, filePath});
+    // select && select({item, type: typeLabel, filePath});
+    if (isDisplayableElement(item)) {
+      console.log('Item selected:', item.name);
+      console.log('Type label:', typeLabel);
+      console.log('File path:', filePath);
+      selectedItem.set({item, type: typeLabel, filePath});
+      // set(item);
+    }
   };
 
   const toggleOpen = (e: MouseEvent | KeyboardEvent) => {
@@ -63,7 +65,7 @@
     console.log('toggle open called in item 2:', isOpen);
     isOpen = !isOpen;
     // dispatch the toggle event to the parent component
-    toggle && toggle({item, type: typeLabel, filePath});
+    // toggle && toggle({item, type: typeLabel, filePath});
   };
 
   const complexElement = isComplexElement(item);
@@ -83,7 +85,8 @@
     style="padding-left: {level * 1.5}rem;"
     role="button"
     tabindex="0"
-    onkeydown={toggleOpen}
+    onkeydown={handleSelect}
+    onclick={handleSelect}
   >
     {#if complexElement || hasChildren}
       <button
@@ -102,10 +105,7 @@
     <span class="mr-2 flex-shrink-0 {iconColor}">
       <Icon/>
     </span>
-    <span class="truncate">{item.name}</span> <span>complexElement={complexElement}</span><span>isExpanded={isExpanded}</span>
-
-    kind: {item.kind}
-
+    <span class="truncate">{item.name}</span>
 
     {#if cIdentifier}
       <span class="ml-2 text-xs text-slate-500 font-mono hidden md:inline">({cIdentifier})</span>
@@ -114,8 +114,9 @@
       <span class="ml-2 text-xs text-orange-500 font-semibold">(deprecated)</span>
     {/if}
 
-
   </div>
+  <!--  <h3>isOpen: {isOpen}</h3>-->
+  <!--  <h3>hasChildren: {hasChildren}</h3>-->
   {#if isOpen && hasChildren}
 
     <div class="wrapper">

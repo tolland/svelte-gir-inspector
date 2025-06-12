@@ -1,26 +1,20 @@
 import type {
-  GirAlias,
-  GirAnyElement,
-  GirAttribute,
+  GirAlias, GirAttribute, GirBaseElement,
   GirCallback,
   GirClass,
   GirConstant,
-  GirConstructor,
-  GirDoc,
+  GirConstructor, GirDoc,
   GirEnum,
   GirField,
   GirFunction,
   GirInterface,
   GirMember,
   GirMethod,
-  GirNamespace,
-  GirParameter,
+  GirNamespace, GirParameter,
   GirProperty,
   GirRecord,
-  GirRepository,
-  GirReturnValue,
-  GirSignal,
-  GirSourcePosition
+  GirRepository, GirReturnValue,
+  GirSignal, GirSourcePosition
 } from '../types';
 import {GirElementKind,} from '../types';
 
@@ -49,6 +43,7 @@ function getDoc(element: Element): GirDoc | undefined {
   }
   return undefined;
 }
+
 
 function getSourcePosition(element: Element): GirSourcePosition | undefined {
   const spEl = Array.from(element.children).find(
@@ -109,7 +104,7 @@ function parseReturnValue(element: Element): GirReturnValue | undefined {
   };
 }
 
-function parseBaseElement(element: Element, _pathPrefix: string, _type: string): Omit<GirAnyElement, 'id' | "kind"> {
+function parseBaseElement(element: Element, _pathPrefix: string): Omit<GirBaseElement, 'id' | 'kind'> {
   const name = getAttr(element, 'name')!;
   const docDeprecatedEl = Array.from(element.children).find(
     child => child.localName === 'doc-deprecated' && child.namespaceURI === CORE_NS
@@ -120,29 +115,29 @@ function parseBaseElement(element: Element, _pathPrefix: string, _type: string):
     glibName: getAttr(element, 'name', GLIB_NS) || getAttr(element, 'nick', GLIB_NS),
     doc: getDoc(element),
     sourcePosition: getSourcePosition(element),
-    deprecated: getAttr(element, 'deprecated') || (docDeprecatedEl ? docDeprecatedEl.textContent || true : false), // Use textContent if available
+    deprecated: getAttr(element, 'deprecated') || (docDeprecatedEl ? docDeprecatedEl.textContent || true : false),
     version: getAttr(element, 'version'),
     attributes: getAllAttributes(element),
-  } as Omit<GirAnyElement, 'id' | "kind">; // Cast needed as it's a generic parser
+  };
 }
 
 
-function parseCallable(element: Element, pathPrefix: string, type: string): GirFunction | GirConstructor | GirMethod | GirCallback {
-  const base = parseBaseElement(element, pathPrefix, type) as Omit<GirFunction, 'id' | 'parameters' | 'returnValue' | 'throws' | 'kind'>;
-  const name = base.name || (type === 'constructor' ? 'new' : 'unknown_callable'); // Ensure name is always a string
+function parseCallable(element: Element, pathPrefix: string, kind: GirElementKind): GirFunction | GirConstructor | GirMethod | GirCallback {
+  const base = parseBaseElement(element, pathPrefix);
+  const name = base.name || (kind === GirElementKind.Constructor ? 'new' : 'unknown_callable');
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind,
     parameters: parseParameters(element, `${pathPrefix}.${name}`),
     returnValue: parseReturnValue(element),
     throws: getAttr(element, 'throws') === '1',
-    kind: GirElementKind[type as keyof typeof GirElementKind],
-  } as GirFunction;
+  } as GirFunction | GirConstructor | GirMethod | GirCallback;
 }
 
 
 function parseProperty(element: Element, pathPrefix: string): GirProperty {
-  const base = parseBaseElement(element, pathPrefix, 'Property') as Omit<GirProperty, 'id' | 'type' | 'cType' | 'transferOwnership' | 'writable' | 'readable' | 'construct' | 'constructOnly'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   const typeEl = Array.from(element.children).find(
     child => (child.localName === 'type' || child.localName === 'array') && child.namespaceURI === CORE_NS
@@ -150,6 +145,7 @@ function parseProperty(element: Element, pathPrefix: string): GirProperty {
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind: GirElementKind.Property,
     type: typeEl ? getAttr(typeEl, 'name') : undefined,
     cType: typeEl ? getAttr(typeEl, 'type', C_NS) : undefined,
     transferOwnership: getAttr(element, 'transfer-ownership'),
@@ -161,7 +157,7 @@ function parseProperty(element: Element, pathPrefix: string): GirProperty {
 }
 
 function parseField(element: Element, pathPrefix: string): GirField {
-  const base = parseBaseElement(element, pathPrefix, 'Field') as Omit<GirField, 'id' | 'type' | 'cType' | 'readable' | 'writable' | 'private' | 'bits'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
 
   let typeEl: Element | undefined = undefined; // Ensure typeEl can be undefined
@@ -186,7 +182,8 @@ function parseField(element: Element, pathPrefix: string): GirField {
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
-    type: typeEl ? getAttr(typeEl, 'name') : (getAttr(element, 'name', C_NS) === 'gpointer' ? 'gpointer' : undefined), // Fallback for things like gpointer in C
+    kind: GirElementKind.Field,
+    type: typeEl ? getAttr(typeEl, 'name') : (getAttr(element, 'name', C_NS) === 'gpointer' ? 'gpointer' : undefined),
     cType: typeEl ? getAttr(typeEl, 'type', C_NS) : getAttr(element, 'type', C_NS),
     readable: getAttr(element, 'readable') !== '0',
     writable: getAttr(element, 'writable') === '1',
@@ -196,11 +193,12 @@ function parseField(element: Element, pathPrefix: string): GirField {
 }
 
 function parseSignal(element: Element, pathPrefix: string): GirSignal {
-  const base = parseBaseElement(element, pathPrefix, 'Signal') as Omit<GirSignal, 'id' | 'when' | 'detailed' | 'action' | 'noHooks' | 'noRecurse' | 'parameters' | 'returnValue'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind: GirElementKind.Signal,
     when: getAttr(element, 'when'),
     detailed: getAttr(element, 'detailed') === '1',
     action: getAttr(element, 'action') === '1',
@@ -230,11 +228,12 @@ function parseMembers(element: Element, _pathPrefix: string): GirMember[] {
 }
 
 function parseEnum(element: Element, pathPrefix: string): GirEnum {
-  const base = parseBaseElement(element, pathPrefix, 'Enum') as Omit<GirEnum, 'id' | 'cType' | 'glibTypeName' | 'glibGetType' | 'members' | 'errorDomain'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind: GirElementKind.Enum,
     cType: getAttr(element, 'type', C_NS),
     glibTypeName: getAttr(element, 'type-name', GLIB_NS),
     glibGetType: getAttr(element, 'get-type', GLIB_NS),
@@ -244,7 +243,7 @@ function parseEnum(element: Element, pathPrefix: string): GirEnum {
 }
 
 function parseAlias(element: Element, pathPrefix: string): GirAlias {
-  const base = parseBaseElement(element, pathPrefix, 'Alias') as Omit<GirAlias, 'id' | 'type' | 'cType'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   const typeEl = Array.from(element.children).find(
     child => (child.localName === 'type' || child.localName === 'array') && child.namespaceURI === CORE_NS
@@ -252,13 +251,14 @@ function parseAlias(element: Element, pathPrefix: string): GirAlias {
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind: GirElementKind.Alias,
     type: typeEl ? getAttr(typeEl, 'name') : undefined,
     cType: typeEl ? getAttr(typeEl, 'type', C_NS) : undefined,
   };
 }
 
 function parseConstant(element: Element, pathPrefix: string): GirConstant {
-  const base = parseBaseElement(element, pathPrefix, 'Constant') as Omit<GirConstant, 'id' | 'type' | 'cType' | 'value'>;
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   const typeEl = Array.from(element.children).find(
     child => (child.localName === 'type' || child.localName === 'array') && child.namespaceURI === CORE_NS
@@ -266,26 +266,34 @@ function parseConstant(element: Element, pathPrefix: string): GirConstant {
   return {
     ...base,
     id: `${pathPrefix}.${name}`,
+    kind: GirElementKind.Constant,
     type: typeEl ? getAttr(typeEl, 'name') : undefined,
     cType: typeEl ? getAttr(typeEl, 'type', C_NS) : undefined,
     value: getAttr(element, 'value')!,
   };
 }
 
-function parseComplexType<T extends GirClass | GirInterface | GirRecord>(element: Element, pathPrefix: string, type: 'Class' | 'Interface' | 'Record'): T {
-  const base = parseBaseElement(element, pathPrefix, type) as Omit<T, 'id' | 'cSymbolPrefix' | 'cType' | 'glibTypeName' | 'glibGetType' | 'parent' | 'functions' | 'methods' | 'properties' | 'signals' | 'callbacks' | 'constants' | 'constructors' | 'fields' | 'prerequisites' | 'kind'>;
+function parseComplexType<T extends GirClass | GirInterface | GirRecord>(
+  element: Element,
+  pathPrefix: string,
+  kind: GirElementKind.Class | GirElementKind.Interface | GirElementKind.Record
+): T {
+  const base = parseBaseElement(element, pathPrefix);
   const name = base.name!;
   const currentPath = `${pathPrefix}.${name}`;
   const children = Array.from(element.children);
 
   const constructors: GirConstructor[] = [];
-  children.filter(el => el.localName === 'constructor' && el.namespaceURI === CORE_NS).forEach(el => constructors.push(parseCallable(el, currentPath, 'Constructor') as GirConstructor));
+  children.filter(el => el.localName === 'constructor' && el.namespaceURI === CORE_NS)
+    .forEach(el => constructors.push(parseCallable(el, currentPath, GirElementKind.Constructor) as GirConstructor));
 
   const methods: GirMethod[] = [];
-  children.filter(el => el.localName === 'method' && el.namespaceURI === CORE_NS).forEach(el => methods.push(parseCallable(el, currentPath, 'Method') as GirMethod));
+  children.filter(el => el.localName === 'method' && el.namespaceURI === CORE_NS)
+    .forEach(el => methods.push(parseCallable(el, currentPath, GirElementKind.Method) as GirMethod));
 
   const functions: GirFunction[] = [];
-  children.filter(el => el.localName === 'function' && el.namespaceURI === CORE_NS).forEach(el => functions.push(parseCallable(el, currentPath, 'Function') as GirFunction));
+  children.filter(el => el.localName === 'function' && el.namespaceURI === CORE_NS)
+    .forEach(el => functions.push(parseCallable(el, currentPath, GirElementKind.Function) as GirFunction));
 
   const properties: GirProperty[] = [];
   children.filter(el => el.localName === 'property' && el.namespaceURI === CORE_NS).forEach(el => properties.push(parseProperty(el, currentPath)));
@@ -294,12 +302,15 @@ function parseComplexType<T extends GirClass | GirInterface | GirRecord>(element
   children.filter(el => el.localName === 'signal' && (el.namespaceURI === GLIB_NS || el.namespaceURI === CORE_NS)).forEach(el => signals.push(parseSignal(el, currentPath)));
 
   const fields: GirField[] = [];
-  if (type === 'Class' || type === 'Record') {
+  // @TODO original implementation seems to assume that interface can't have fields
+  // however looking at <https://github.com/GNOME/gobject-introspection/blob/main/docs/gir-1.2.rnc#L150>
+  // suggests it can, ehether in practice. anyway, this doesn't hurt i think???
+  //if (type === 'Class' || type === 'Record') {
     children.filter(el => el.localName === 'field' && el.namespaceURI === CORE_NS).forEach(el => fields.push(parseField(el, currentPath)));
-  }
+  //}
 
   const callbacks: GirCallback[] = [];
-  children.filter(el => el.localName === 'callback' && el.namespaceURI === CORE_NS).forEach(el => callbacks.push(parseCallable(el, currentPath, 'Callback') as GirCallback));
+  children.filter(el => el.localName === 'callback' && el.namespaceURI === CORE_NS).forEach(el => callbacks.push(parseCallable(el, currentPath, GirElementKind.Callback) as GirCallback));
 
   const constants: GirConstant[] = [];
   children.filter(el => el.localName === 'constant' && el.namespaceURI === CORE_NS).forEach(el => constants.push(parseConstant(el, currentPath)));
@@ -320,6 +331,7 @@ function parseComplexType<T extends GirClass | GirInterface | GirRecord>(element
   const complexData: any = {
     ...base,
     id: currentPath,
+    kind,
     cSymbolPrefix: getAttr(element, 'symbol-prefix', C_NS),
     cType: getAttr(element, 'type', C_NS),
     glibTypeName: getAttr(element, 'type-name', GLIB_NS),
@@ -332,17 +344,18 @@ function parseComplexType<T extends GirClass | GirInterface | GirRecord>(element
     callbacks,
     constants,
     prerequisites: prerequisites.length > 0 ? prerequisites : undefined,
-    implements: implementsInterfaces.length > 0 ? implementsInterfaces : undefined, // Added implements here
+    implements: implementsInterfaces.length > 0 ? implementsInterfaces : undefined,
   };
 
-  if (type === 'Class' || type === 'Record') {
+  if (kind === GirElementKind.Class || kind === GirElementKind.Record) {
     complexData.constructors = constructors;
     complexData.fields = fields;
     complexData.abstract = getAttr(element, 'abstract') === '1';
     complexData.fundamental = getAttr(element, 'fundamental', GLIB_NS) === '1';
     complexData.typeStruct = getAttr(element, 'type-struct', GLIB_NS);
   }
-  if (type === 'Record') {
+
+  if (kind === GirElementKind.Record) {
     complexData.disguised = getAttr(element, 'disguised') === '1';
     complexData.foreign = getAttr(element, 'foreign') === '1';
     complexData.gtypeStructFor = getAttr(element, 'struct-for', GLIB_NS);
@@ -395,14 +408,19 @@ export function parseGirContent(xmlString: string, fileName: string): GirReposit
       kind: GirElementKind.Namespace,
     };
 
-    nsChildren.filter(el => el.localName === 'class' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.classes.push(parseComplexType(el, nsPath, 'Class')));
-    nsChildren.filter(el => el.localName === 'interface' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.interfaces.push(parseComplexType(el, nsPath, 'Interface')));
-    nsChildren.filter(el => el.localName === 'record' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.records.push(parseComplexType(el, nsPath, 'Record')));
+    nsChildren.filter(el => el.localName === 'class' && el.namespaceURI === CORE_NS)
+      .forEach(el => currentNamespace.classes.push(parseComplexType(el, nsPath, GirElementKind.Class)));
+    nsChildren.filter(el => el.localName === 'interface' && el.namespaceURI === CORE_NS)
+      .forEach(el => currentNamespace.interfaces.push(parseComplexType(el, nsPath, GirElementKind.Interface)));
+    nsChildren.filter(el => el.localName === 'record' && el.namespaceURI === CORE_NS)
+      .forEach(el => currentNamespace.records.push(parseComplexType(el, nsPath, GirElementKind.Record)));
     nsChildren.filter(el => (el.localName === 'enumeration' || el.localName === 'bitfield') && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.enums.push(parseEnum(el, nsPath)));
     nsChildren.filter(el => el.localName === 'alias' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.aliases.push(parseAlias(el, nsPath)));
     nsChildren.filter(el => el.localName === 'constant' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.constants.push(parseConstant(el, nsPath)));
-    nsChildren.filter(el => el.localName === 'function' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.functions.push(parseCallable(el, nsPath, 'Function') as GirFunction));
-    nsChildren.filter(el => el.localName === 'callback' && el.namespaceURI === CORE_NS).forEach(el => currentNamespace.callbacks.push(parseCallable(el, nsPath, 'Callback') as GirCallback));
+    nsChildren.filter(el => el.localName === 'function' && el.namespaceURI === CORE_NS)
+      .forEach(el => currentNamespace.functions.push(parseCallable(el, nsPath, GirElementKind.Function) as GirFunction));
+    nsChildren.filter(el => el.localName === 'callback' && el.namespaceURI === CORE_NS)
+      .forEach(el => currentNamespace.callbacks.push(parseCallable(el, nsPath, GirElementKind.Callback) as GirCallback));
 
     namespaces.push(currentNamespace);
   });

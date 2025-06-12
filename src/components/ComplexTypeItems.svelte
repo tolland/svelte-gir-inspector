@@ -1,6 +1,5 @@
 <script lang="ts">
   import type {GirClass, GirInterface, GirRecord, SelectedItem} from '../types';
-  import {CogIcon, SpeakerWaveIcon, TagIcon} from './icons';
   import GirElementList from './GirElementList.svelte';
 
   export let item: GirClass | GirInterface | GirRecord;
@@ -9,11 +8,9 @@
   // const dispatch = createEventDispatcher<{ selectElement: SelectedItem }>();
 
   function handleSelectElement(selectedElement: SelectedItem) {
-   // dispatch('selectElement', event.detail);
+    // dispatch('selectElement', event.detail);
   }
 </script>
-
-<h1>complex type</h1>
 
 <ul> <!-- Added a wrapping <ul> as GirElementList renders <li> -->
   {#if 'constructors' in item && item.constructors && item.constructors.length > 0}

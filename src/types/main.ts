@@ -17,20 +17,23 @@ export interface GirBaseElement extends GirKind {
   attributes: GirAttribute[];
 }
 
-export interface GirInterface extends GirBaseElement {
-  kind: GirElementKind.Interface;
+export interface GirComplexBase extends GirBaseElement {
   cSymbolPrefix?: string;
   cType?: string;
   glibTypeName?: string;
   glibGetType?: string;
   parent?: string;
-  prerequisites?: string[];
   functions: GirFunction[];
   methods: GirMethod[];
   properties: GirProperty[];
   signals: GirSignal[];
   callbacks: GirCallback[];
   constants: GirConstant[];
+}
+
+export interface GirInterface extends GirComplexBase {
+  kind: GirElementKind.Interface;
+  prerequisites?: string[];
 }
 
 /**
@@ -41,7 +44,7 @@ export interface GirInterface extends GirBaseElement {
  * Includes functions, methods, properties, signals, callbacks, constants from GirInterface
  *
  */
-export interface GirClass extends GirInterface {
+export interface GirClass extends GirComplexBase {
   kind: GirElementKind.Class;
   abstract?: boolean;
   fundamental?: boolean;
@@ -53,11 +56,19 @@ export interface GirClass extends GirInterface {
 /**
  * Records are similar to classes but can be simpler
  */
-export interface GirRecord extends GirClass {
+export interface GirRecord extends GirComplexBase {
   kind: GirElementKind.Record;
+  // Record-specific attributes
   disguised?: boolean;
+  opaque?: boolean;
+  pointer?: boolean;
   foreign?: boolean;
   gtypeStructFor?: string;
+  copyFunction?: string;
+  freeFunction?: string;
+  // Records have fields like classes
+  fields: GirField[];
+  // But no constructors (unlike classes)
 }
 
 

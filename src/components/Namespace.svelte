@@ -1,6 +1,5 @@
 <script lang="ts">
   import type {GirNamespace, SelectedItem} from '../types';
-  import type {Snippet} from 'svelte'
   import {getIcon} from "../utils";
   import GirElementList from "./GirElementList.svelte";
   import {ChevronDownIcon, ChevronRightIcon} from "./icons";
@@ -19,8 +18,7 @@
     toggle?: (selectedItem: SelectedItem) => void;
     select?: (selectedItem: SelectedItem) => void;
     activeIndex?: number;
-    children?: Snippet;
-  } & Record<string, Snippet | any>;
+  }
 
   let {
     ns,
@@ -36,11 +34,7 @@
     toggle,
     select,
     activeIndex = $bindable(-1),
-    children,
-    ...snippetProps
   }: Props = $props();
-
-  const snippets = Object.values(snippetProps).filter(v => typeof v === 'function');
 
   let isOpen = $state(defaultOpen);
 
@@ -89,12 +83,8 @@
 
 -->
 
-{#snippet showNamespace(ns: GirNamespace)}
-  <pre>hello {ns.id} {ns.name}!</pre>
-{/snippet}
-
-<h3>namespace</h3>
-{@render showNamespace(ns)}
+<!--<h3>namespace</h3>-->
+<!--{@render showNamespace(ns)}-->
 
 
 <li class="item-typeLabel-{typeLabel} my-0.5">

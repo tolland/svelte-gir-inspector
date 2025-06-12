@@ -1,87 +1,84 @@
 <script lang="ts">
-  import type {GirAnyElement, SelectedItem} from '../types';
+  import type {SelectedItem} from '../types';
   import DetailCard from './DetailCard.svelte';
   import DocDisplay from './leafs/DocDisplay.svelte';
   import AttributesDisplay from './leafs/AttributesDisplay.svelte';
   import ParametersDisplay from './leafs/ParametersDisplay.svelte';
   import ReturnValueDisplay from './leafs/ReturnValueDisplay.svelte';
+  import { selectedItem } from '../stores.js';
 
-  export let selectedItem: SelectedItem | null = null;
-
-  // Helper variables for cleaner template logic
-  let item: GirAnyElement, type: string, filePath: string;
-  $: if (selectedItem) {
-    item = selectedItem.item;
-    type = selectedItem.type;
-    filePath = selectedItem.filePath;
-  }
+  let item = $selectedItem?.item;
+  let type = $selectedItem?.type;
+  let name = $selectedItem?.item.name;
+  let filePath = $selectedItem?.filePath;
+  $inspect(selectedItem);
 </script>
 
-{#if !selectedItem}
+{#if !$selectedItem?.item}
   <div class="p-8 text-center text-slate-500">Select an element from the browser or search results to see its details.
   </div>
 {:else}
   <div class="p-4 h-full overflow-y-auto">
-    <DetailCard title={`${type}: ${item.name}`}>
-      <p class="text-xs text-slate-400 mb-2 break-all">Path: {filePath}</p>
+    <DetailCard title={`${$selectedItem?.item.kind}: ${$selectedItem?.item.name}`}>
+      <p class="text-xs text-slate-400 mb-2 break-all">Path: {$selectedItem?.filePath}</p>
 
-      {#if 'cIdentifier' in item && item.cIdentifier}
-        <p>C Identifier: <span class="font-mono bg-slate-200 px-1 rounded">{item.cIdentifier}</span></p>
+      {#if 'cIdentifier' in $selectedItem?.item && $selectedItem?.item.cIdentifier}
+        <p>C Identifier: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.cIdentifier}</span></p>
       {/if}
-      {#if 'glibName' in item && item.glibName}
-        <p>GLib Name: <span class="font-mono bg-slate-200 px-1 rounded">{item.glibName}</span></p>
+      {#if 'glibName' in $selectedItem?.item && $selectedItem?.item.glibName}
+        <p>GLib Name: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.glibName}</span></p>
       {/if}
-      {#if 'glibName' in item && !item.glibName && 'glibNick' in item && item.glibNick}
-        <p>GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded">{item.glibNick}</span></p>
+      {#if 'glibName' in $selectedItem?.item && !$selectedItem?.item.glibName && 'glibNick' in $selectedItem?.item && $selectedItem?.item.glibNick}
+        <p>GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.glibNick}</span></p>
       {/if}
       {#if 'version' in item && item.version}
-        <p>Version: <span class="font-mono bg-slate-200 px-1 rounded">{item.version}</span></p>
+        <p>Version: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.version}</span></p>
       {/if}version
-      {#if 'deprecated' in item && item.deprecated}
+      {#if 'deprecated' in $selectedItem?.item && $selectedItem?.item.deprecated}
         <p class="text-orange-600 font-semibold">
-          Deprecated {typeof item.deprecated === 'string' ? `: ${item.deprecated}` : ''}</p>
+          Deprecated {typeof $selectedItem?.item.deprecated === 'string' ? `: ${$selectedItem?.item.deprecated}` : ''}</p>
       {/if}
 
-      {#if 'sourcePosition' in item && item.sourcePosition}
+      {#if 'sourcePosition' in $selectedItem?.item && $selectedItem?.item.sourcePosition}
         <p class="text-xs text-slate-500">
-          Source: {item.sourcePosition.filename}{item.sourcePosition.line && ` (line ${item.sourcePosition.line})`}
+          Source: {$selectedItem?.item.sourcePosition.filename}{$selectedItem?.item.sourcePosition.line && ` (line ${$selectedItem?.item.sourcePosition.line})`}
         </p>
       {/if}
 
-      {#if 'doc' in item && item.doc}
-        <DocDisplay doc={item.doc}/>
+      {#if 'doc' in $selectedItem?.item && $selectedItem?.item.doc}
+        <DocDisplay doc={$selectedItem?.item.doc}/>
       {/if}
 
-      {#if 'attributes' in item && Array.isArray(item.attributes)}
-        <AttributesDisplay attributes={item.attributes}/>
+      {#if 'attributes' in $selectedItem?.item && Array.isArray($selectedItem?.item.attributes)}
+        <AttributesDisplay attributes={$selectedItem?.item.attributes}/>
       {/if}
 
-      {#if ['Function', 'Constructor', 'Method', 'Callback'].includes(type) && 'parameters' in item}
-        <ParametersDisplay params={item.parameters}/>
+      {#if ['Function', 'Constructor', 'Method', 'Callback'].includes(type) && 'parameters' in $selectedItem?.item}
+        <ParametersDisplay params={$selectedItem?.item.parameters}/>
         {#if type !== 'Constructor'}
-          <ReturnValueDisplay rv={item.returnValue}/>
+          <ReturnValueDisplay rv={$selectedItem?.item.returnValue}/>
         {/if}
-        {#if 'throws' in item && item.throws}
+        {#if 'throws' in $selectedItem?.item && $selectedItem?.item.throws}
           <p class="text-red-600 font-semibold mt-2">Throws Exception</p>
         {/if}
       {/if}
 
       {#if type === 'Property' || type === 'Field'}
-        {#if 'type' in item && item.type}
+        {#if 'type' in $selectedItem?.item && $selectedItem?.item.type}
           <p>Type: <span
-            class="font-mono bg-slate-200 px-1 rounded">{item.type}</span> {item.cType && `(C: ${item.cType})`}</p>
+            class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.type}</span> {$selectedItem?.item.cType && `(C: ${$selectedItem?.item.cType})`}</p>
         {/if}
-        {#if 'transferOwnership' in item && item.transferOwnership}
-          <p>Transfer: <span class="font-mono bg-slate-200 px-1 rounded">{item.transferOwnership}</span></p>
+        {#if 'transferOwnership' in $selectedItem?.item && $selectedItem?.item.transferOwnership}
+          <p>Transfer: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.transferOwnership}</span></p>
         {/if}
-        {#if 'readable' in item }
-          <p>Readable: {item.readable ? 'Yes' : 'No'}</p>
+        {#if 'readable' in $selectedItem?.item }
+          <p>Readable: {$selectedItem?.item.readable ? 'Yes' : 'No'}</p>
         {/if}
-        {#if 'writable' in item }
-          <p>Writable: {item.writable ? 'Yes' : 'No'}</p>
+        {#if 'writable' in $selectedItem?.item }
+          <p>Writable: {$selectedItem?.item.writable ? 'Yes' : 'No'}</p>
         {/if}
-        {#if 'construct' in item && item.construct}<p>Construct Property</p>{/if}
-        {#if 'constructOnly' in item && item.constructOnly}<p>Construct-Only Property</p>{/if}
+        {#if 'construct' in $selectedItem?.item && $selectedItem?.item.construct}<p>Construct Property</p>{/if}
+        {#if 'constructOnly' in $selectedItem?.item && $selectedItem?.item.constructOnly}<p>Construct-Only Property</p>{/if}
       {/if}
 
       {#if type === 'Enum'}
