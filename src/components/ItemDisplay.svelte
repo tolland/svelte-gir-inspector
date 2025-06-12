@@ -1,17 +1,16 @@
 <script lang="ts">
-  import type {GirAnyElement, SelectedItem} from '../types';
+  import type {GirDisplayableElement, SelectedItem} from '../types';
   import {isComplexElement, isDisplayableElement} from '../types';
   import {ChevronDownIcon, ChevronRightIcon} from "./icons";
   import {getIcon} from "../utils";
   import {type Icon as IconType} from '@lucide/svelte';
-  import ComplexTypeItems from "./ComplexTypeItems.svelte";
   import {hasChildren as itemHasChildren} from "../types/utility";
   import {selectedItem} from '../stores';
-  // import { selectedItem } from '../shared.js';
+  import {componentMap} from "./utils.ts";
 
   type Props = {
     activeIndex?: number;
-    item: GirAnyElement;
+    item: GirDisplayableElement;
     typeLabel: string;
     icon?: typeof IconType;
     filePath: string;
@@ -65,7 +64,6 @@
     console.log('toggle open called in item 2:', isOpen);
     isOpen = !isOpen;
     // dispatch the toggle event to the parent component
-    // toggle && toggle({item, type: typeLabel, filePath});
   };
 
   const complexElement = isComplexElement(item);
@@ -77,11 +75,15 @@
 
   const Icon = icon
 
+  let DynaComponent = $derived(componentMap[item.kind] as any);
+
+  // $inspect(DynaComponent);
+
 </script>
 
 <li class="item-typeLabel-{typeLabel} my-0.5">
   <div
-    class="flex items-center p-2 text-sm hover:bg-slate-100 rounded-md cursor-pointer"
+    class="flex items-center p-1 text-sm hover:bg-slate-100 rounded-md cursor-pointer"
     style="padding-left: {level * 1.5}rem;"
     role="button"
     tabindex="0"
@@ -118,15 +120,15 @@
   <!--  <h3>isOpen: {isOpen}</h3>-->
   <!--  <h3>hasChildren: {hasChildren}</h3>-->
   {#if isOpen && hasChildren}
-
-    <div class="wrapper">
-      {#if isComplexElement(item) }
-        <ComplexTypeItems
-          item={item}
-          parentFilePath={filePath}
-        ></ComplexTypeItems>
-      {/if}
-    </div>
+    {#if DynaComponent}
+      <h1>rendering for {item.kind} constructor name is "{DynaComponent.constructor.name}"</h1>
+    <DynaComponent
+      {item}
+      parentfilePath={filePath}
+    />
+    {:else}
+No component found for {item.kind}
+    {/if}
 
   {/if}
 </li>

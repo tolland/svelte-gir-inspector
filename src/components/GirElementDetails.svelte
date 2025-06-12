@@ -1,47 +1,83 @@
 <script lang="ts">
-  import type {SelectedItem} from '../types';
-  import DetailCard from './DetailCard.svelte';
-  import DocDisplay from './leafs/DocDisplay.svelte';
-  import AttributesDisplay from './leafs/AttributesDisplay.svelte';
-  import ParametersDisplay from './leafs/ParametersDisplay.svelte';
-  import ReturnValueDisplay from './leafs/ReturnValueDisplay.svelte';
-  import { selectedItem } from '../stores.js';
+  import DetailCard from './DetailCard.svelte'
+  import DocDisplay from './leafs/DocDisplay.svelte'
+  import AttributesDisplay from './leafs/AttributesDisplay.svelte'
+  import ParametersDisplay from './leafs/ParametersDisplay.svelte'
+  import ReturnValueDisplay from './leafs/ReturnValueDisplay.svelte'
+  import {selectedItem} from '../stores.js'
 
-  let item = $selectedItem?.item;
-  let type = $selectedItem?.type;
-  let name = $selectedItem?.item.name;
-  let filePath = $selectedItem?.filePath;
-  $inspect(selectedItem);
+  let item = $selectedItem?.item
+  let type = $selectedItem?.type
+  let name = $selectedItem?.item.name
+  let filePath = $selectedItem?.filePath
+  $inspect(selectedItem)
+
+  selectedItem.subscribe((value) => {
+    console.log(value);
+    if (value) {
+      item = value.item
+      type = value.type
+      name = value.item.name
+      filePath = value.filePath
+    }
+  });
 </script>
 
+
 {#if !$selectedItem?.item}
-  <div class="p-8 text-center text-slate-500">Select an element from the browser or search results to see its details.
+  <div class="p-8 text-center text-slate-500">
+    Select an element from the browser or search results to see its details.
   </div>
 {:else}
   <div class="p-4 h-full overflow-y-auto">
-    <DetailCard title={`${$selectedItem?.item.kind}: ${$selectedItem?.item.name}`}>
-      <p class="text-xs text-slate-400 mb-2 break-all">Path: {$selectedItem?.filePath}</p>
+    <DetailCard
+      title={`${$selectedItem?.item.kind}: ${$selectedItem?.item.name}`}
+    >
+      <p class="text-xs text-slate-400 mb-2 break-all">
+        Path: {$selectedItem?.filePath}
+      </p>
 
       {#if 'cIdentifier' in $selectedItem?.item && $selectedItem?.item.cIdentifier}
-        <p>C Identifier: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.cIdentifier}</span></p>
+        <p>
+          C Identifier: <span class="font-mono bg-slate-200 px-1 rounded"
+        >{$selectedItem?.item.cIdentifier}</span
+        >
+        </p>
       {/if}
       {#if 'glibName' in $selectedItem?.item && $selectedItem?.item.glibName}
-        <p>GLib Name: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.glibName}</span></p>
+        <p>
+          GLib Name: <span class="font-mono bg-slate-200 px-1 rounded"
+        >{$selectedItem?.item.glibName}</span
+        >
+        </p>
       {/if}
       {#if 'glibName' in $selectedItem?.item && !$selectedItem?.item.glibName && 'glibNick' in $selectedItem?.item && $selectedItem?.item.glibNick}
-        <p>GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.glibNick}</span></p>
+        <p>
+          GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded"
+        >{$selectedItem?.item.glibNick}</span
+        >
+        </p>
       {/if}
-      {#if 'version' in item && item.version}
-        <p>Version: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.version}</span></p>
+      {#if 'version' in $selectedItem?.item && $selectedItem?.item.version}
+        <p>
+          Version: <span class="font-mono bg-slate-200 px-1 rounded"
+        >{$selectedItem?.item.version}</span
+        >
+        </p>
       {/if}version
       {#if 'deprecated' in $selectedItem?.item && $selectedItem?.item.deprecated}
         <p class="text-orange-600 font-semibold">
-          Deprecated {typeof $selectedItem?.item.deprecated === 'string' ? `: ${$selectedItem?.item.deprecated}` : ''}</p>
+          Deprecated {typeof $selectedItem?.item.deprecated === 'string'
+          ? `: ${$selectedItem?.item.deprecated}`
+          : ''}
+        </p>
       {/if}
 
       {#if 'sourcePosition' in $selectedItem?.item && $selectedItem?.item.sourcePosition}
         <p class="text-xs text-slate-500">
-          Source: {$selectedItem?.item.sourcePosition.filename}{$selectedItem?.item.sourcePosition.line && ` (line ${$selectedItem?.item.sourcePosition.line})`}
+          Source: {$selectedItem?.item.sourcePosition.filename}{$selectedItem
+          ?.item.sourcePosition.line &&
+        ` (line ${$selectedItem?.item.sourcePosition.line})`}
         </p>
       {/if}
 
@@ -65,33 +101,61 @@
 
       {#if type === 'Property' || type === 'Field'}
         {#if 'type' in $selectedItem?.item && $selectedItem?.item.type}
-          <p>Type: <span
-            class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.type}</span> {$selectedItem?.item.cType && `(C: ${$selectedItem?.item.cType})`}</p>
+          <p>
+            Type: <span class="font-mono bg-slate-200 px-1 rounded"
+          >{$selectedItem?.item.type}</span
+          >
+            {$selectedItem?.item.cType && `(C: ${$selectedItem?.item.cType})`}
+          </p>
         {/if}
         {#if 'transferOwnership' in $selectedItem?.item && $selectedItem?.item.transferOwnership}
-          <p>Transfer: <span class="font-mono bg-slate-200 px-1 rounded">{$selectedItem?.item.transferOwnership}</span></p>
+          <p>
+            Transfer: <span class="font-mono bg-slate-200 px-1 rounded"
+          >{$selectedItem?.item.transferOwnership}</span
+          >
+          </p>
         {/if}
-        {#if 'readable' in $selectedItem?.item }
+        {#if 'readable' in $selectedItem?.item}
           <p>Readable: {$selectedItem?.item.readable ? 'Yes' : 'No'}</p>
         {/if}
-        {#if 'writable' in $selectedItem?.item }
+        {#if 'writable' in $selectedItem?.item}
           <p>Writable: {$selectedItem?.item.writable ? 'Yes' : 'No'}</p>
         {/if}
-        {#if 'construct' in $selectedItem?.item && $selectedItem?.item.construct}<p>Construct Property</p>{/if}
-        {#if 'constructOnly' in $selectedItem?.item && $selectedItem?.item.constructOnly}<p>Construct-Only Property</p>{/if}
+        {#if 'construct' in $selectedItem?.item && $selectedItem?.item.construct}<p
+        >
+          Construct Property
+        </p>{/if}
+        {#if 'constructOnly' in $selectedItem?.item && $selectedItem?.item.constructOnly}<p
+        >
+          Construct-Only Property
+        </p>{/if}
       {/if}
 
-      {#if type === 'Enum'}
-        {#if 'members' in item && item.members}
+
+      {#if $selectedItem?.type === 'Enum'}
+        {#if 'members' in $selectedItem?.item && $selectedItem?.item.members}
           <h4 class="font-semibold text-slate-800 my-2">Members:</h4>
           <ul class="space-y-1">
-            {#each item.members as m, i (i)}
-              <li class="border-l-2 border-purple-500 pl-3 py-1 bg-slate-50 rounded-r">
+            {#each $selectedItem?.item.members as m, i (i)}
+              <li
+                class="border-l-2 border-purple-500 pl-2 py-1 bg-slate-50 rounded-r"
+              >
                 <p class="font-semibold font-mono text-purple-700">{m.name}</p>
-                <p>Value: <span class="font-mono bg-slate-200 px-1 rounded">{m.value}</span></p>
-                {#if m.cIdentifier}<p>C Identifier: <span
-                  class="font-mono bg-slate-200 px-1 rounded">{m.cIdentifier}</span></p>{/if}
-                {#if m.glibNick}<p>GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded">{m.glibNick}</span>
+                <p>
+                  Value: <span class="font-mono bg-slate-200 px-1 rounded"
+                >{m.value}</span
+                >
+                </p>
+                {#if m.cIdentifier}<p>
+                  C Identifier: <span
+                  class="font-mono bg-slate-200 px-1 rounded"
+                >{m.cIdentifier}</span
+                >
+                </p>{/if}
+                {#if m.glibNick}<p>
+                  GLib Nick: <span class="font-mono bg-slate-200 px-1 rounded"
+                >{m.glibNick}</span
+                >
                 </p>{/if}
                 {#if m.doc}
                   <div class="mt-1">

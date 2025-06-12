@@ -1,0 +1,25 @@
+{
+  "name": "@svelte-gir/generated",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "unist": "^0.0.1",
+    "xast": "^0.1.239",
+    "xast-util-from-xml": "^4.0.0",
+    "xast-util-to-string": "^3.0.0",
+    "xastscript": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/unist": "^3.0.3",
+    "@types/xast": "^2.0.4",
+    "rimraf": "^6.0.1",
+    "typescript": "~5.7.3"
+  }
+} 

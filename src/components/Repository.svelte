@@ -42,14 +42,20 @@
   let iconColor = $derived(typeLabel === 'Method' ? 'text-blue-500' : typeLabel === 'Function' ? 'text-green-500' : 'text-slate-500');
 </script>
 
-
+<style>
+  h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+</style>
 
 <h2 class="text-xl font-semibold text-slate-800 mb-3 border-b pb-2">
   <span class="inline align-text-bottom mr-2">{@html FileIcon()}</span>
   {repo.fileName}
 </h2>
 
-<ul>
+<ul class="repository-ul-wrapper">
   {#each repo.namespaces as ns (ns.id)}
     <Namespace
       ns={ns}

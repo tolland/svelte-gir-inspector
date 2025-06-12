@@ -1,16 +1,15 @@
 <script lang="ts">
-  import type {GirClass, GirInterface, GirRecord, SelectedItem} from '../types';
-  import GirElementList from './GirElementList.svelte';
+  import type {GirClass, GirInterface, GirRecord, SelectedItem} from '../../types';
+  import GirElementList from '../GirElementList.svelte';
 
   export let item: GirClass | GirInterface | GirRecord;
   export let parentFilePath: string;
 
-  // const dispatch = createEventDispatcher<{ selectElement: SelectedItem }>();
-
   function handleSelectElement(selectedElement: SelectedItem) {
-    // dispatch('selectElement', event.detail);
   }
 </script>
+
+<h1>this is complex</h1>
 
 <ul> <!-- Added a wrapping <ul> as GirElementList renders <li> -->
   {#if 'constructors' in item && item.constructors && item.constructors.length > 0}

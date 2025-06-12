@@ -120,21 +120,4 @@ export function hasChildren(element: GirAnyElement): boolean {
   return isComplexElement(element) || element.kind === GirElementKind.Namespace;
 }
 
-// Component mapping using kinds
-export function getComponentForKind(kind: GirElementKind): string {
-  switch (kind) {
-    case GirElementKind.Class:
-    case GirElementKind.Interface:
-    case GirElementKind.Record:
-      return 'ComplexTypeRenderer';
-    case GirElementKind.Enum:
-      return 'EnumRenderer';
-    case GirElementKind.Function:
-    case GirElementKind.Method:
-    case GirElementKind.Constructor:
-    case GirElementKind.Callback:
-      return 'CallableRenderer';
-    default:
-      return 'SimpleRenderer';
-  }
-}
+

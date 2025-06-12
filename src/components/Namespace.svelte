@@ -89,7 +89,7 @@
 
 <li class="item-typeLabel-{typeLabel} my-0.5">
   <div
-    class="flex items-center p-2 hover:bg-slate-100 rounded-md cursor-pointer"
+    class="flex items-center p-1 hover:bg-slate-100 rounded-md cursor-pointer"
     style="padding-left: {level * 1.5}rem;"
     role="button"
     tabindex="0"

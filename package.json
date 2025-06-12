@@ -10,6 +10,7 @@
   "license": "MIT",
   "author": "",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "clean": "rimraf build .svelte-kit dist",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
@@ -21,18 +22,19 @@
     "@sveltejs/adapter-static": "^3.0.8",
     "@sveltejs/kit": "^2.21.4",
     "@sveltejs/vite-plugin-svelte": "^5.1.0",
-    "@tailwindcss/postcss": "^4.1.8",
-    "@tailwindcss/vite": "^4.1.8",
+    "@tailwindcss/postcss": "^4.1.10",
+    "@tailwindcss/vite": "^4.1.10",
     "@tsconfig/svelte": "^5.0.4",
     "@types/node": "^22.15.31",
     "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.4",
+    "postcss": "^8.5.5",
     "rimraf": "^6.0.1",
+    "smui-theme": "8.0.0-beta.3",
     "stylelint": "^16.20.0",
-    "svelte": "^5.33.19",
+    "svelte": "^5.34.1",
     "svelte-check": "^4.2.1",
     "svelte-loader": "^3.2.4",
-    "tailwindcss": "^4.1.8",
+    "tailwindcss": "^4.1.10",
     "typescript": "~5.7.3",
     "vite": "^6.3.5"
   },
@@ -45,12 +47,26 @@
   },
   "dependencies": {
     "@lucide/svelte": "^0.514.0",
-    "@types/unist": "^3.0.3",
-    "@types/xast": "^2.0.4",
-    "unist": "^0.0.1",
-    "xast": "^0.1.239",
-    "xast-util-from-xml": "^4.0.0",
-    "xast-util-to-string": "^3.0.0",
-    "xastscript": "^4.0.0"
+    "@smui/common": "link:/home/tomhodder/git/svelte-material-ui/packages/common",
+    "@smui/tab": "link:/home/tomhodder/git/svelte-material-ui/packages/tab",
+    "@smui/tab-bar": "link:/home/tomhodder/git/svelte-material-ui/packages/tab-bar",
+    "bits-ui": "^2.6.0",
+    "clsx": "^2.1.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-svelte": "^3.4.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-svelte"
+    ],
+    "singleQuote": true,
+    "semi": false,
+    "trailingComma": "all",
+    "printWidth": 80,
+    "tabWidth": 2,
+    "useTabs": false,
+    "svelteSortOrder": "options-scripts-markup-styles",
+    "svelteStrictMode": true
   }
 }

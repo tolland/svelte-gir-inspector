@@ -14,6 +14,8 @@ import {
   Tag as FieldIconIcon,
   Webhook as CallbackIcon
 } from '@lucide/svelte';
+import {appState, PRELOAD_FILES} from "./shared.svelte.ts";
+import {parseGirContent} from "./services/girParser.ts";
 
 // import {CodeBracketIcon, CogIcon, CubeIcon, FileIcon, ListBulletIcon, SpeakerWaveIcon, TagIcon} from './icons';
 
@@ -49,6 +51,28 @@ export function getIcon(typeLabel: string) {
       return MemberIcon;
     default:
       return EnumIcon;
+  }
+}
+
+// Preload GIR files on page load
+export async function preloadGirFiles() {
+  for (const filePath of PRELOAD_FILES) {
+    try {
+      const response = await fetch(filePath);
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status} fetching ${filePath}`);
+      }
+      const content = await response.text();
+      const fileName = filePath.split('/').pop() || filePath;
+      const parsedRepo = parseGirContent(content, fileName);
+      appState.repositories = [...appState.repositories, parsedRepo];
+      if (!appState.activeRepositoryId) {
+        appState.activeRepositoryId = parsedRepo.id;
+      }
+    } catch (e) {
+      console.error(`Error preloading GIR file ${filePath}:`, e);
+      appState.error = `Failed to preload ${filePath.split('/').pop()}: ${e instanceof Error ? e.message : String(e)}`;
+    }
   }
 }
 

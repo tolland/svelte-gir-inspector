@@ -18,7 +18,7 @@ export const ChevronRightIcon = (className?: string): string => addClassToSvg(
 );
 
 export const FileIcon = (className?: string): string => addClassToSvg(
-  '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-.94-2.348l-4.26-4.26A3.375 3.375 0 0 0 10.875 4.5H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5A2.25 2.25 0 0 0 6.75 19.5h7.5a2.25 2.25 0 0 0 2.25-2.25v-2.625a3.375 3.375 0 0 0-.94-2.348L19.5 14.25Z" /></svg>',
+  '<svg style="display: inline-block;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-.94-2.348l-4.26-4.26A3.375 3.375 0 0 0 10.875 4.5H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5A2.25 2.25 0 0 0 6.75 19.5h7.5a2.25 2.25 0 0 0 2.25-2.25v-2.625a3.375 3.375 0 0 0-.94-2.348L19.5 14.25Z" /></svg>',
   className
 );
 

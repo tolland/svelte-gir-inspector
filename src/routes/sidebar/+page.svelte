@@ -48,7 +48,7 @@
     }
   }
 
-  function handleSelectElement(event: CustomEvent<SelectedItem>) {
+  function handleSelectElement(event: any) {
     selectedItem = event.detail;
   }
 
@@ -187,7 +187,7 @@
 
   <div class="flex flex-col flex-1 overflow-y-auto p-4 gap-4">
     <div class="w-full bg-white rounded-lg shadow-lg flex flex-col">
-      <GirFileUploader on:fileLoad={handleFileLoad} disabled={isLoading} />
+      <GirFileUploader handleUpload={handleFileLoad} disabled={isLoading} />
       <SearchBar bind:searchTerm disabled={isLoading || repositories.length === 0} />
       <div class="p-4 overflow-y-auto max-h-[25vh] sm:max-h-[200px]">
         <h2 class="text-sm font-semibold text-slate-600 mb-2 uppercase tracking-wider">Loaded GIR Files</h2>
@@ -213,15 +213,12 @@
     </div>
     <div class="w-full flex-1 bg-white rounded-lg shadow-lg overflow-hidden min-h-[300px]">
       <GirBrowser
-        {repositories}
-        {activeRepositoryId}
         on:selectElement={handleSelectElement}
         {searchResults}
-        {searchTerm}
       />
     </div>
     <div class="w-full bg-white rounded-lg shadow-lg overflow-hidden min-h-[200px] h-[30vh]">
-      <GirElementDetails {selectedItem} />
+      <GirElementDetails />
     </div>
   </div>
 </div>
