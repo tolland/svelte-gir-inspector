@@ -1,0 +1,4957 @@
+<?xml version="1.0"?>
+<grammar xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:doc="http://www.gtk.org/introspection/doc/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" xmlns="http://relaxng.org/ns/structure/1.0" ns="http://www.gtk.org/introspection/core/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <ref name="ElementRepository"/>
+  </start>
+  <define name="ElementRepository">
+    <element>
+      <name>repository</name>
+      <group>
+        <group>
+          <group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>version</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:identifier-prefixes</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>c:symbol-prefixes</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementInclude"/>
+                  </oneOrMore>
+                </choice>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementCInclude"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementPackage"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementNamespace"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementDocFormat"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementNamespace">
+    <element>
+      <name>namespace</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>name</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>version</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>c:identifier-prefixes</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>c:symbol-prefixes</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:prefix</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>shared-library</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <interleave>
+                          <interleave>
+                            <interleave>
+                              <interleave>
+                                <interleave>
+                                  <interleave>
+                                    <choice>
+                                      <empty/>
+                                      <oneOrMore>
+                                        <ref name="ElementAlias"/>
+                                      </oneOrMore>
+                                    </choice>
+                                    <choice>
+                                      <empty/>
+                                      <oneOrMore>
+                                        <ref name="ElementClass"/>
+                                      </oneOrMore>
+                                    </choice>
+                                  </interleave>
+                                  <choice>
+                                    <empty/>
+                                    <oneOrMore>
+                                      <ref name="ElementInterface"/>
+                                    </oneOrMore>
+                                  </choice>
+                                </interleave>
+                                <choice>
+                                  <empty/>
+                                  <oneOrMore>
+                                    <ref name="ElementRecord"/>
+                                  </oneOrMore>
+                                </choice>
+                              </interleave>
+                              <choice>
+                                <empty/>
+                                <oneOrMore>
+                                  <ref name="ElementEnum"/>
+                                </oneOrMore>
+                              </choice>
+                            </interleave>
+                            <choice>
+                              <empty/>
+                              <oneOrMore>
+                                <ref name="ElementFunction"/>
+                              </oneOrMore>
+                            </choice>
+                          </interleave>
+                          <choice>
+                            <empty/>
+                            <oneOrMore>
+                              <ref name="ElementFunctionInline"/>
+                            </oneOrMore>
+                          </choice>
+                        </interleave>
+                        <choice>
+                          <empty/>
+                          <oneOrMore>
+                            <ref name="ElementFunctionMacro"/>
+                          </oneOrMore>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <oneOrMore>
+                          <ref name="ElementUnion"/>
+                        </oneOrMore>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <oneOrMore>
+                        <ref name="ElementBitField"/>
+                      </oneOrMore>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <oneOrMore>
+                      <ref name="ElementCallback"/>
+                    </oneOrMore>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementConstant"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementBoxed"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementDocSection"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementAnnotation">
+    <element>
+      <name>attribute</name>
+      <group>
+        <attribute>
+          <name>name</name>
+          <data type="string"/>
+        </attribute>
+        <attribute>
+          <name>value</name>
+          <data type="string"/>
+        </attribute>
+      </group>
+    </element>
+  </define>
+  <define name="ElementCInclude">
+    <element>
+      <name>c:include</name>
+      <attribute>
+        <name>name</name>
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="ElementDocFormat">
+    <element>
+      <name>doc:format</name>
+      <attribute>
+        <name>name</name>
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="ElementInclude">
+    <element>
+      <name>include</name>
+      <group>
+        <attribute>
+          <name>name</name>
+          <data type="string"/>
+        </attribute>
+        <choice>
+          <empty/>
+          <attribute>
+            <name>version</name>
+            <data type="string"/>
+          </attribute>
+        </choice>
+      </group>
+    </element>
+  </define>
+  <define name="ElementPackage">
+    <element>
+      <name>package</name>
+      <attribute>
+        <name>name</name>
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="ElementAlias">
+    <element>
+      <name>alias</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>introspectable</name>
+                        <choice>
+                          <value type="token">0</value>
+                          <value type="token">1</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>deprecated</name>
+                        <choice>
+                          <value type="token">0</value>
+                          <value type="token">1</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>deprecated-version</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>version</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>stability</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <attribute>
+              <name>name</name>
+              <data type="string"/>
+            </attribute>
+          </group>
+          <attribute>
+            <name>c:type</name>
+            <data type="string"/>
+          </attribute>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <choice>
+              <ref name="ElementType"/>
+              <ref name="ElementArrayType"/>
+            </choice>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementInterface">
+    <element>
+      <name>interface</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>introspectable</name>
+                                <choice>
+                                  <value type="token">0</value>
+                                  <value type="token">1</value>
+                                </choice>
+                              </attribute>
+                            </choice>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>deprecated</name>
+                                <choice>
+                                  <value type="token">0</value>
+                                  <value type="token">1</value>
+                                </choice>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>deprecated-version</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>version</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>stability</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <attribute>
+                      <name>name</name>
+                      <data type="string"/>
+                    </attribute>
+                  </group>
+                  <attribute>
+                    <name>glib:type-name</name>
+                    <data type="string"/>
+                  </attribute>
+                </group>
+                <attribute>
+                  <name>glib:get-type</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>c:symbol-prefix</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:type</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:type-struct</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <interleave>
+                          <interleave>
+                            <interleave>
+                              <interleave>
+                                <interleave>
+                                  <interleave>
+                                    <interleave>
+                                      <interleave>
+                                        <interleave>
+                                          <interleave>
+                                            <choice>
+                                              <empty/>
+                                              <ref name="ElementDocVersion"/>
+                                            </choice>
+                                            <choice>
+                                              <empty/>
+                                              <ref name="ElementDocStability"/>
+                                            </choice>
+                                          </interleave>
+                                          <choice>
+                                            <empty/>
+                                            <ref name="ElementDoc"/>
+                                          </choice>
+                                        </interleave>
+                                        <choice>
+                                          <empty/>
+                                          <ref name="ElementDocDeprecated"/>
+                                        </choice>
+                                      </interleave>
+                                      <choice>
+                                        <empty/>
+                                        <ref name="ElementSourcePosition"/>
+                                      </choice>
+                                    </interleave>
+                                    <choice>
+                                      <empty/>
+                                      <oneOrMore>
+                                        <ref name="ElementAnnotation"/>
+                                      </oneOrMore>
+                                    </choice>
+                                  </interleave>
+                                  <choice>
+                                    <empty/>
+                                    <oneOrMore>
+                                      <ref name="ElementPrerequisite"/>
+                                    </oneOrMore>
+                                  </choice>
+                                </interleave>
+                                <choice>
+                                  <empty/>
+                                  <oneOrMore>
+                                    <ref name="ElementImplements"/>
+                                  </oneOrMore>
+                                </choice>
+                              </interleave>
+                              <choice>
+                                <empty/>
+                                <oneOrMore>
+                                  <ref name="ElementFunction"/>
+                                </oneOrMore>
+                              </choice>
+                            </interleave>
+                            <choice>
+                              <empty/>
+                              <oneOrMore>
+                                <ref name="ElementFunctionInline"/>
+                              </oneOrMore>
+                            </choice>
+                          </interleave>
+                          <choice>
+                            <empty/>
+                            <ref name="ElementConstructor"/>
+                          </choice>
+                        </interleave>
+                        <choice>
+                          <empty/>
+                          <oneOrMore>
+                            <ref name="ElementMethod"/>
+                          </oneOrMore>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <oneOrMore>
+                          <ref name="ElementMethodInline"/>
+                        </oneOrMore>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <oneOrMore>
+                        <ref name="ElementVirtualMethod"/>
+                      </oneOrMore>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <oneOrMore>
+                      <ref name="ElementField"/>
+                    </oneOrMore>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementProperty"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementSignal"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementCallback"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementConstant"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementClass">
+    <element>
+      <name>class</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <group>
+                                    <group>
+                                      <group>
+                                        <group>
+                                          <group>
+                                            <choice>
+                                              <empty/>
+                                              <attribute>
+                                                <name>introspectable</name>
+                                                <choice>
+                                                  <value type="token">0</value>
+                                                  <value type="token">1</value>
+                                                </choice>
+                                              </attribute>
+                                            </choice>
+                                            <choice>
+                                              <empty/>
+                                              <attribute>
+                                                <name>deprecated</name>
+                                                <choice>
+                                                  <value type="token">0</value>
+                                                  <value type="token">1</value>
+                                                </choice>
+                                              </attribute>
+                                            </choice>
+                                          </group>
+                                          <choice>
+                                            <empty/>
+                                            <attribute>
+                                              <name>deprecated-version</name>
+                                              <data type="string"/>
+                                            </attribute>
+                                          </choice>
+                                        </group>
+                                        <choice>
+                                          <empty/>
+                                          <attribute>
+                                            <name>version</name>
+                                            <data type="string"/>
+                                          </attribute>
+                                        </choice>
+                                      </group>
+                                      <choice>
+                                        <empty/>
+                                        <attribute>
+                                          <name>stability</name>
+                                          <data type="string"/>
+                                        </attribute>
+                                      </choice>
+                                    </group>
+                                    <attribute>
+                                      <name>name</name>
+                                      <data type="string"/>
+                                    </attribute>
+                                  </group>
+                                  <attribute>
+                                    <name>glib:type-name</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </group>
+                                <attribute>
+                                  <name>glib:get-type</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>parent</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>glib:type-struct</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>glib:ref-func</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>glib:unref-func</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>glib:set-value-func</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>glib:get-value-func</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>c:type</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>c:symbol-prefix</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>abstract</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:fundamental</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>final</name>
+              <choice>
+                <value type="token">0</value>
+                <value type="token">1</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <interleave>
+                          <interleave>
+                            <interleave>
+                              <interleave>
+                                <interleave>
+                                  <interleave>
+                                    <interleave>
+                                      <interleave>
+                                        <interleave>
+                                          <interleave>
+                                            <interleave>
+                                              <choice>
+                                                <empty/>
+                                                <ref name="ElementDocVersion"/>
+                                              </choice>
+                                              <choice>
+                                                <empty/>
+                                                <ref name="ElementDocStability"/>
+                                              </choice>
+                                            </interleave>
+                                            <choice>
+                                              <empty/>
+                                              <ref name="ElementDoc"/>
+                                            </choice>
+                                          </interleave>
+                                          <choice>
+                                            <empty/>
+                                            <ref name="ElementDocDeprecated"/>
+                                          </choice>
+                                        </interleave>
+                                        <choice>
+                                          <empty/>
+                                          <ref name="ElementSourcePosition"/>
+                                        </choice>
+                                      </interleave>
+                                      <choice>
+                                        <empty/>
+                                        <oneOrMore>
+                                          <ref name="ElementAnnotation"/>
+                                        </oneOrMore>
+                                      </choice>
+                                    </interleave>
+                                    <choice>
+                                      <empty/>
+                                      <oneOrMore>
+                                        <ref name="ElementImplements"/>
+                                      </oneOrMore>
+                                    </choice>
+                                  </interleave>
+                                  <choice>
+                                    <empty/>
+                                    <oneOrMore>
+                                      <ref name="ElementConstructor"/>
+                                    </oneOrMore>
+                                  </choice>
+                                </interleave>
+                                <choice>
+                                  <empty/>
+                                  <oneOrMore>
+                                    <ref name="ElementMethod"/>
+                                  </oneOrMore>
+                                </choice>
+                              </interleave>
+                              <choice>
+                                <empty/>
+                                <oneOrMore>
+                                  <ref name="ElementMethodInline"/>
+                                </oneOrMore>
+                              </choice>
+                            </interleave>
+                            <choice>
+                              <empty/>
+                              <oneOrMore>
+                                <ref name="ElementFunction"/>
+                              </oneOrMore>
+                            </choice>
+                          </interleave>
+                          <choice>
+                            <empty/>
+                            <oneOrMore>
+                              <ref name="ElementFunctionInline"/>
+                            </oneOrMore>
+                          </choice>
+                        </interleave>
+                        <choice>
+                          <empty/>
+                          <oneOrMore>
+                            <ref name="ElementVirtualMethod"/>
+                          </oneOrMore>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <oneOrMore>
+                          <ref name="ElementField"/>
+                        </oneOrMore>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <oneOrMore>
+                        <ref name="ElementProperty"/>
+                      </oneOrMore>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <oneOrMore>
+                      <ref name="ElementSignal"/>
+                    </oneOrMore>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementUnion"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementConstant"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementRecord"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementCallback"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementBoxed">
+    <element>
+      <name>glib:boxed</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>introspectable</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>deprecated-version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>version</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>stability</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <attribute>
+                  <name>glib:name</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>c:symbol-prefix</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:type-name</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:get-type</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementFunction"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementFunctionInline"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementRecord">
+    <element>
+      <name>record</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <group>
+                                    <group>
+                                      <group>
+                                        <choice>
+                                          <empty/>
+                                          <attribute>
+                                            <name>introspectable</name>
+                                            <choice>
+                                              <value type="token">0</value>
+                                              <value type="token">1</value>
+                                            </choice>
+                                          </attribute>
+                                        </choice>
+                                        <choice>
+                                          <empty/>
+                                          <attribute>
+                                            <name>deprecated</name>
+                                            <choice>
+                                              <value type="token">0</value>
+                                              <value type="token">1</value>
+                                            </choice>
+                                          </attribute>
+                                        </choice>
+                                      </group>
+                                      <choice>
+                                        <empty/>
+                                        <attribute>
+                                          <name>deprecated-version</name>
+                                          <data type="string"/>
+                                        </attribute>
+                                      </choice>
+                                    </group>
+                                    <choice>
+                                      <empty/>
+                                      <attribute>
+                                        <name>version</name>
+                                        <data type="string"/>
+                                      </attribute>
+                                    </choice>
+                                  </group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>stability</name>
+                                      <data type="string"/>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <attribute>
+                                  <name>name</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>c:type</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>disguised</name>
+                                <choice>
+                                  <value type="token">0</value>
+                                  <value type="token">1</value>
+                                </choice>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>opaque</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>pointer</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>glib:type-name</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>glib:get-type</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>c:symbol-prefix</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>foreign</name>
+                    <choice>
+                      <value type="token">0</value>
+                      <value type="token">1</value>
+                    </choice>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:is-gtype-struct-for</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>copy-function</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>free-function</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <interleave>
+                          <interleave>
+                            <interleave>
+                              <interleave>
+                                <choice>
+                                  <empty/>
+                                  <ref name="ElementDocVersion"/>
+                                </choice>
+                                <choice>
+                                  <empty/>
+                                  <ref name="ElementDocStability"/>
+                                </choice>
+                              </interleave>
+                              <choice>
+                                <empty/>
+                                <ref name="ElementDoc"/>
+                              </choice>
+                            </interleave>
+                            <choice>
+                              <empty/>
+                              <ref name="ElementDocDeprecated"/>
+                            </choice>
+                          </interleave>
+                          <choice>
+                            <empty/>
+                            <ref name="ElementSourcePosition"/>
+                          </choice>
+                        </interleave>
+                        <choice>
+                          <empty/>
+                          <oneOrMore>
+                            <ref name="ElementAnnotation"/>
+                          </oneOrMore>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <oneOrMore>
+                          <ref name="ElementField"/>
+                        </oneOrMore>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <oneOrMore>
+                        <ref name="ElementFunction"/>
+                      </oneOrMore>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <oneOrMore>
+                      <ref name="ElementFunctionInline"/>
+                    </oneOrMore>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementUnion"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementMethod"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementMethodInline"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementConstructor"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementConstant">
+    <element>
+      <name>constant</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>introspectable</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>deprecated-version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>version</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>stability</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <attribute>
+                  <name>name</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <attribute>
+                <name>value</name>
+                <data type="string"/>
+              </attribute>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:type</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>c:identifier</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <choice>
+              <ref name="ElementType"/>
+              <ref name="ElementArrayType"/>
+            </choice>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementProperty">
+    <element>
+      <name>property</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>writable</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>readable</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>construct</name>
+                        <choice>
+                          <value type="token">0</value>
+                          <value type="token">1</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>construct-only</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>setter</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>getter</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>default-value</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>transfer-ownership</name>
+              <choice>
+                <choice>
+                  <value type="token">none</value>
+                  <value type="token">container</value>
+                </choice>
+                <value type="token">full</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <ref name="ElementType"/>
+            <ref name="ElementArrayType"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementSignal">
+    <element>
+      <name>glib:signal</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>introspectable</name>
+                                  <choice>
+                                    <value type="token">0</value>
+                                    <value type="token">1</value>
+                                  </choice>
+                                </attribute>
+                              </choice>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>deprecated</name>
+                                  <choice>
+                                    <value type="token">0</value>
+                                    <value type="token">1</value>
+                                  </choice>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>deprecated-version</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>version</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>stability</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <attribute>
+                        <name>name</name>
+                        <data type="string"/>
+                      </attribute>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>detailed</name>
+                        <choice>
+                          <value type="token">0</value>
+                          <value type="token">1</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>when</name>
+                      <choice>
+                        <choice>
+                          <value type="token">first</value>
+                          <value type="token">last</value>
+                        </choice>
+                        <value type="token">cleanup</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>action</name>
+                    <choice>
+                      <value type="token">0</value>
+                      <value type="token">1</value>
+                    </choice>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>no-hooks</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>no-recurse</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>emitter</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementField">
+    <element>
+      <name>field</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>introspectable</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>deprecated</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated-version</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>stability</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <attribute>
+                    <name>name</name>
+                    <data type="string"/>
+                  </attribute>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>writable</name>
+                    <choice>
+                      <value type="token">0</value>
+                      <value type="token">1</value>
+                    </choice>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>readable</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>private</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>bits</name>
+              <data type="integer"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <ref name="ElementCallback"/>
+            <choice>
+              <ref name="ElementType"/>
+              <ref name="ElementArrayType"/>
+            </choice>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementCallback">
+    <element>
+      <name>callback</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>introspectable</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>deprecated</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>deprecated-version</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>version</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>stability</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <attribute>
+                <name>name</name>
+                <data type="string"/>
+              </attribute>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:type</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>throws</name>
+              <choice>
+                <value type="token">0</value>
+                <value type="token">1</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementImplements">
+    <element>
+      <name>implements</name>
+      <attribute>
+        <name>name</name>
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="ElementPrerequisite">
+    <element>
+      <name>prerequisite</name>
+      <attribute>
+        <name>name</name>
+        <data type="string"/>
+      </attribute>
+    </element>
+  </define>
+  <define name="ElementType">
+    <element>
+      <name>type</name>
+      <group>
+        <group>
+          <group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>name</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>c:type</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>introspectable</name>
+              <choice>
+                <value type="token">0</value>
+                <value type="token">1</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocVersion"/>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocStability"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDoc"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementDocDeprecated"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementSourcePosition"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <choice>
+                <ref name="ElementType"/>
+                <ref name="ElementArrayType"/>
+              </choice>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementArrayType">
+    <element>
+      <name>array</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>name</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>zero-terminated</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>fixed-size</name>
+                    <data type="integer"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>introspectable</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>length</name>
+                <data type="integer"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>c:type</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <choice>
+          <ref name="ElementType"/>
+          <ref name="ElementArrayType"/>
+        </choice>
+      </group>
+    </element>
+  </define>
+  <define name="ElementConstructor">
+    <element>
+      <name>constructor</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>c:identifier</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadowed-by</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>shadows</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>throws</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>moved-to</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:async-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:sync-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:finish-func</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementVarArgs">
+    <element>
+      <name>varargs</name>
+      <empty/>
+    </element>
+  </define>
+  <define name="ElementCallableparams">
+    <element>
+      <name>parameters</name>
+      <interleave>
+        <choice>
+          <empty/>
+          <oneOrMore>
+            <ref name="ElementParameter"/>
+          </oneOrMore>
+        </choice>
+        <choice>
+          <empty/>
+          <ref name="ElementInstanceParameter"/>
+        </choice>
+      </interleave>
+    </element>
+  </define>
+  <define name="ElementCallablereturn">
+    <element>
+      <name>return-value</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>introspectable</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>nullable</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>closure</name>
+                        <data type="integer"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>scope</name>
+                      <choice>
+                        <choice>
+                          <choice>
+                            <value type="token">notified</value>
+                            <value type="token">async</value>
+                          </choice>
+                          <value type="token">call</value>
+                        </choice>
+                        <value type="token">forever</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>destroy</name>
+                    <data type="integer"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>skip</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>allow-none</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>transfer-ownership</name>
+              <choice>
+                <choice>
+                  <value type="token">none</value>
+                  <value type="token">container</value>
+                </choice>
+                <value type="token">full</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <ref name="ElementType"/>
+            <ref name="ElementArrayType"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementFunction">
+    <element>
+      <name>function</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>c:identifier</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadowed-by</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>shadows</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>throws</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>moved-to</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:async-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:sync-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:finish-func</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementFunctionInline">
+    <element>
+      <name>function-inline</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>c:identifier</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadowed-by</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>shadows</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>throws</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>moved-to</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:async-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:sync-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:finish-func</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+            <choice>
+              <empty/>
+              <ref name="ElementCallablereturn"/>
+            </choice>
+          </interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocVersion"/>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocStability"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDoc"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementDocDeprecated"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementSourcePosition"/>
+            </choice>
+          </interleave>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementFunctionMacro">
+    <element>
+      <name>function-macro</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>c:identifier</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadowed-by</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>shadows</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>throws</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>moved-to</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:async-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:sync-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:finish-func</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementAnnotation"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallableparams"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementMethod">
+    <element>
+      <name>method</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <group>
+                                    <group>
+                                      <choice>
+                                        <empty/>
+                                        <attribute>
+                                          <name>introspectable</name>
+                                          <choice>
+                                            <value type="token">0</value>
+                                            <value type="token">1</value>
+                                          </choice>
+                                        </attribute>
+                                      </choice>
+                                      <choice>
+                                        <empty/>
+                                        <attribute>
+                                          <name>deprecated</name>
+                                          <choice>
+                                            <value type="token">0</value>
+                                            <value type="token">1</value>
+                                          </choice>
+                                        </attribute>
+                                      </choice>
+                                    </group>
+                                    <choice>
+                                      <empty/>
+                                      <attribute>
+                                        <name>deprecated-version</name>
+                                        <data type="string"/>
+                                      </attribute>
+                                    </choice>
+                                  </group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>version</name>
+                                      <data type="string"/>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>stability</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <attribute>
+                                <name>name</name>
+                                <data type="string"/>
+                              </attribute>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>c:identifier</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>shadowed-by</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>shadows</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>throws</name>
+                          <choice>
+                            <value type="token">0</value>
+                            <value type="token">1</value>
+                          </choice>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>moved-to</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>glib:async-func</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>glib:sync-func</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:finish-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:set-property</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:get-property</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementMethodInline">
+    <element>
+      <name>method-inline</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>introspectable</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated</name>
+                                      <choice>
+                                        <value type="token">0</value>
+                                        <value type="token">1</value>
+                                      </choice>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>deprecated-version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>version</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>stability</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <attribute>
+                            <name>name</name>
+                            <data type="string"/>
+                          </attribute>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>c:identifier</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadowed-by</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>shadows</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>throws</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>moved-to</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:async-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:sync-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:finish-func</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementVirtualMethod">
+    <element>
+      <name>virtual-method</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <group>
+                                <group>
+                                  <group>
+                                    <choice>
+                                      <empty/>
+                                      <attribute>
+                                        <name>introspectable</name>
+                                        <choice>
+                                          <value type="token">0</value>
+                                          <value type="token">1</value>
+                                        </choice>
+                                      </attribute>
+                                    </choice>
+                                    <choice>
+                                      <empty/>
+                                      <attribute>
+                                        <name>deprecated</name>
+                                        <choice>
+                                          <value type="token">0</value>
+                                          <value type="token">1</value>
+                                        </choice>
+                                      </attribute>
+                                    </choice>
+                                  </group>
+                                  <choice>
+                                    <empty/>
+                                    <attribute>
+                                      <name>deprecated-version</name>
+                                      <data type="string"/>
+                                    </attribute>
+                                  </choice>
+                                </group>
+                                <choice>
+                                  <empty/>
+                                  <attribute>
+                                    <name>version</name>
+                                    <data type="string"/>
+                                  </attribute>
+                                </choice>
+                              </group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>stability</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <attribute>
+                              <name>name</name>
+                              <data type="string"/>
+                            </attribute>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>c:identifier</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>shadowed-by</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>shadows</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>throws</name>
+                        <choice>
+                          <value type="token">0</value>
+                          <value type="token">1</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>moved-to</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>glib:async-func</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:sync-func</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:finish-func</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>invoker</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocVersion"/>
+                      </choice>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDocStability"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDoc"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocDeprecated"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementSourcePosition"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementAnnotation"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementCallableparams"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementCallablereturn"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementUnion">
+    <element>
+      <name>union</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>introspectable</name>
+                                  <choice>
+                                    <value type="token">0</value>
+                                    <value type="token">1</value>
+                                  </choice>
+                                </attribute>
+                              </choice>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>deprecated</name>
+                                  <choice>
+                                    <value type="token">0</value>
+                                    <value type="token">1</value>
+                                  </choice>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>deprecated-version</name>
+                                <data type="string"/>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>version</name>
+                              <data type="string"/>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>stability</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>name</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>c:type</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>c:symbol-prefix</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>glib:type-name</name>
+                    <data type="string"/>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:get-type</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>copy-function</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>free-function</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <interleave>
+                          <interleave>
+                            <interleave>
+                              <interleave>
+                                <choice>
+                                  <empty/>
+                                  <ref name="ElementDocVersion"/>
+                                </choice>
+                                <choice>
+                                  <empty/>
+                                  <ref name="ElementDocStability"/>
+                                </choice>
+                              </interleave>
+                              <choice>
+                                <empty/>
+                                <ref name="ElementDoc"/>
+                              </choice>
+                            </interleave>
+                            <choice>
+                              <empty/>
+                              <ref name="ElementDocDeprecated"/>
+                            </choice>
+                          </interleave>
+                          <choice>
+                            <empty/>
+                            <ref name="ElementSourcePosition"/>
+                          </choice>
+                        </interleave>
+                        <choice>
+                          <empty/>
+                          <oneOrMore>
+                            <ref name="ElementAnnotation"/>
+                          </oneOrMore>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <oneOrMore>
+                          <ref name="ElementField"/>
+                        </oneOrMore>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <oneOrMore>
+                        <ref name="ElementConstructor"/>
+                      </oneOrMore>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <oneOrMore>
+                      <ref name="ElementMethod"/>
+                    </oneOrMore>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementMethodInline"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementFunction"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementFunctionInline"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementRecord"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementBitField">
+    <element>
+      <name>bitfield</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>introspectable</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated</name>
+                            <choice>
+                              <value type="token">0</value>
+                              <value type="token">1</value>
+                            </choice>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>deprecated-version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>version</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>stability</name>
+                      <data type="string"/>
+                    </attribute>
+                  </choice>
+                </group>
+                <attribute>
+                  <name>name</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <attribute>
+                <name>c:type</name>
+                <data type="string"/>
+              </attribute>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:type-name</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:get-type</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <choice>
+                          <empty/>
+                          <ref name="ElementDocVersion"/>
+                        </choice>
+                        <choice>
+                          <empty/>
+                          <ref name="ElementDocStability"/>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDoc"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocDeprecated"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementSourcePosition"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementAnnotation"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementMember"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementFunction"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementFunctionInline"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementEnum">
+    <element>
+      <name>enumeration</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>introspectable</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>deprecated</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated-version</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>stability</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <attribute>
+                    <name>name</name>
+                    <data type="string"/>
+                  </attribute>
+                </group>
+                <attribute>
+                  <name>c:type</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>glib:type-name</name>
+                  <data type="string"/>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:get-type</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:error-domain</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <interleave>
+                      <interleave>
+                        <choice>
+                          <empty/>
+                          <ref name="ElementDocVersion"/>
+                        </choice>
+                        <choice>
+                          <empty/>
+                          <ref name="ElementDocStability"/>
+                        </choice>
+                      </interleave>
+                      <choice>
+                        <empty/>
+                        <ref name="ElementDoc"/>
+                      </choice>
+                    </interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocDeprecated"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementSourcePosition"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <oneOrMore>
+                    <ref name="ElementAnnotation"/>
+                  </oneOrMore>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <oneOrMore>
+                  <ref name="ElementMember"/>
+                </oneOrMore>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <oneOrMore>
+                <ref name="ElementFunction"/>
+              </oneOrMore>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementFunctionInline"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementMember">
+    <element>
+      <name>member</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>introspectable</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>deprecated</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>deprecated-version</name>
+                            <data type="string"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>version</name>
+                          <data type="string"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>stability</name>
+                        <data type="string"/>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <attribute>
+                    <name>name</name>
+                    <data type="string"/>
+                  </attribute>
+                </group>
+                <attribute>
+                  <name>value</name>
+                  <data type="string"/>
+                </attribute>
+              </group>
+              <attribute>
+                <name>c:identifier</name>
+                <data type="string"/>
+              </attribute>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>glib:nick</name>
+                <data type="string"/>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>glib:name</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocVersion"/>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocStability"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDoc"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementDocDeprecated"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementSourcePosition"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementAnnotation"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementDocSection">
+    <element>
+      <name>docsection</name>
+      <group>
+        <attribute>
+          <name>name</name>
+          <data type="string"/>
+        </attribute>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocVersion"/>
+                </choice>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocStability"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementDoc"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementDocDeprecated"/>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <ref name="ElementSourcePosition"/>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementDocVersion">
+    <element>
+      <name>doc-version</name>
+      <group>
+        <group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:space</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:whitespace</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+        </group>
+        <text/>
+      </group>
+    </element>
+  </define>
+  <define name="ElementDocStability">
+    <element>
+      <name>doc-stability</name>
+      <group>
+        <group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:space</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:whitespace</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+        </group>
+        <text/>
+      </group>
+    </element>
+  </define>
+  <define name="ElementDoc">
+    <element>
+      <name>doc</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>xml:space</name>
+                    <value type="token">preserve</value>
+                  </attribute>
+                </choice>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>xml:whitespace</name>
+                    <value type="token">preserve</value>
+                  </attribute>
+                </choice>
+              </group>
+              <attribute>
+                <name>filename</name>
+                <data type="string"/>
+              </attribute>
+            </group>
+            <attribute>
+              <name>line</name>
+              <data type="string"/>
+            </attribute>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>column</name>
+              <data type="string"/>
+            </attribute>
+          </choice>
+        </group>
+        <text/>
+      </group>
+    </element>
+  </define>
+  <define name="ElementDocDeprecated">
+    <element>
+      <name>doc-deprecated</name>
+      <group>
+        <group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:space</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>xml:whitespace</name>
+              <value type="token">preserve</value>
+            </attribute>
+          </choice>
+        </group>
+        <text/>
+      </group>
+    </element>
+  </define>
+  <define name="ElementSourcePosition">
+    <element>
+      <name>source-position</name>
+      <group>
+        <group>
+          <attribute>
+            <name>filename</name>
+            <data type="string"/>
+          </attribute>
+          <attribute>
+            <name>line</name>
+            <data type="string"/>
+          </attribute>
+        </group>
+        <choice>
+          <empty/>
+          <attribute>
+            <name>column</name>
+            <data type="string"/>
+          </attribute>
+        </choice>
+      </group>
+    </element>
+  </define>
+  <define name="ElementParameter">
+    <element>
+      <name>parameter</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <group>
+                    <group>
+                      <group>
+                        <group>
+                          <group>
+                            <group>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>name</name>
+                                  <data type="string"/>
+                                </attribute>
+                              </choice>
+                              <choice>
+                                <empty/>
+                                <attribute>
+                                  <name>nullable</name>
+                                  <choice>
+                                    <value type="token">0</value>
+                                    <value type="token">1</value>
+                                  </choice>
+                                </attribute>
+                              </choice>
+                            </group>
+                            <choice>
+                              <empty/>
+                              <attribute>
+                                <name>allow-none</name>
+                                <choice>
+                                  <value type="token">0</value>
+                                  <value type="token">1</value>
+                                </choice>
+                              </attribute>
+                            </choice>
+                          </group>
+                          <choice>
+                            <empty/>
+                            <attribute>
+                              <name>introspectable</name>
+                              <choice>
+                                <value type="token">0</value>
+                                <value type="token">1</value>
+                              </choice>
+                            </attribute>
+                          </choice>
+                        </group>
+                        <choice>
+                          <empty/>
+                          <attribute>
+                            <name>closure</name>
+                            <data type="integer"/>
+                          </attribute>
+                        </choice>
+                      </group>
+                      <choice>
+                        <empty/>
+                        <attribute>
+                          <name>destroy</name>
+                          <data type="integer"/>
+                        </attribute>
+                      </choice>
+                    </group>
+                    <choice>
+                      <empty/>
+                      <attribute>
+                        <name>scope</name>
+                        <choice>
+                          <choice>
+                            <choice>
+                              <value type="token">notified</value>
+                              <value type="token">async</value>
+                            </choice>
+                            <value type="token">call</value>
+                          </choice>
+                          <value type="token">forever</value>
+                        </choice>
+                      </attribute>
+                    </choice>
+                  </group>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>direction</name>
+                      <choice>
+                        <choice>
+                          <value type="token">out</value>
+                          <value type="token">in</value>
+                        </choice>
+                        <value type="token">inout</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>caller-allocates</name>
+                    <choice>
+                      <value type="token">0</value>
+                      <value type="token">1</value>
+                    </choice>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>optional</name>
+                  <choice>
+                    <value type="token">0</value>
+                    <value type="token">1</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>skip</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>transfer-ownership</name>
+              <choice>
+                <choice>
+                  <value type="token">none</value>
+                  <value type="token">container</value>
+                </choice>
+                <value type="token">full</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <interleave>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocVersion"/>
+                    </choice>
+                    <choice>
+                      <empty/>
+                      <ref name="ElementDocStability"/>
+                    </choice>
+                  </interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDoc"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDocDeprecated"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementSourcePosition"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <choice>
+                <choice>
+                  <ref name="ElementType"/>
+                  <ref name="ElementArrayType"/>
+                </choice>
+                <ref name="ElementVarArgs"/>
+              </choice>
+            </choice>
+          </interleave>
+          <choice>
+            <empty/>
+            <oneOrMore>
+              <ref name="ElementAnnotation"/>
+            </oneOrMore>
+          </choice>
+        </interleave>
+      </group>
+    </element>
+  </define>
+  <define name="ElementInstanceParameter">
+    <element>
+      <name>instance-parameter</name>
+      <group>
+        <group>
+          <group>
+            <group>
+              <group>
+                <group>
+                  <attribute>
+                    <name>name</name>
+                    <data type="string"/>
+                  </attribute>
+                  <choice>
+                    <empty/>
+                    <attribute>
+                      <name>nullable</name>
+                      <choice>
+                        <value type="token">0</value>
+                        <value type="token">1</value>
+                      </choice>
+                    </attribute>
+                  </choice>
+                </group>
+                <choice>
+                  <empty/>
+                  <attribute>
+                    <name>allow-none</name>
+                    <choice>
+                      <value type="token">0</value>
+                      <value type="token">1</value>
+                    </choice>
+                  </attribute>
+                </choice>
+              </group>
+              <choice>
+                <empty/>
+                <attribute>
+                  <name>direction</name>
+                  <choice>
+                    <choice>
+                      <value type="token">out</value>
+                      <value type="token">in</value>
+                    </choice>
+                    <value type="token">inout</value>
+                  </choice>
+                </attribute>
+              </choice>
+            </group>
+            <choice>
+              <empty/>
+              <attribute>
+                <name>caller-allocates</name>
+                <choice>
+                  <value type="token">0</value>
+                  <value type="token">1</value>
+                </choice>
+              </attribute>
+            </choice>
+          </group>
+          <choice>
+            <empty/>
+            <attribute>
+              <name>transfer-ownership</name>
+              <choice>
+                <choice>
+                  <value type="token">none</value>
+                  <value type="token">container</value>
+                </choice>
+                <value type="token">full</value>
+              </choice>
+            </attribute>
+          </choice>
+        </group>
+        <interleave>
+          <interleave>
+            <interleave>
+              <interleave>
+                <interleave>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocVersion"/>
+                  </choice>
+                  <choice>
+                    <empty/>
+                    <ref name="ElementDocStability"/>
+                  </choice>
+                </interleave>
+                <choice>
+                  <empty/>
+                  <ref name="ElementDoc"/>
+                </choice>
+              </interleave>
+              <choice>
+                <empty/>
+                <ref name="ElementDocDeprecated"/>
+              </choice>
+            </interleave>
+            <choice>
+              <empty/>
+              <ref name="ElementSourcePosition"/>
+            </choice>
+          </interleave>
+          <ref name="ElementType"/>
+        </interleave>
+      </group>
+    </element>
+  </define>
+</grammar>
