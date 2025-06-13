@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<grammar ns="http://www.gtk.org/introspection/core/1.0" xmlns:core="http://www.gtk.org/introspection/core/1.0" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:doc="http://www.gtk.org/introspection/doc/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+<grammar
+    ns="http://www.gtk.org/introspection/core/1.0"
+    xmlns:core="http://www.gtk.org/introspection/core/1.0"
+    xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+    xmlns:c="http://www.gtk.org/introspection/c/1.0"
+    xmlns:doc="http://www.gtk.org/introspection/doc/1.0"
+    xmlns:glib="http://www.gtk.org/introspection/glib/1.0"
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
   <start>
     <ref name="Repository"/>
   </start>

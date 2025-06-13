@@ -1,0 +1,137 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT ns1:repository (package,include,namespace)>
+<!ATTLIST ns1:repository
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    version  #REQUIRED>
+
+<!ELEMENT ns1:package EMPTY>
+<!ATTLIST ns1:package
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    name  #REQUIRED>
+
+<!ELEMENT c:include EMPTY>
+<!ATTLIST c:include
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED>
+
+<!ELEMENT ns1:namespace ((bitfield|callback|constant|enumeration|union)+,function+)>
+<!ATTLIST ns1:namespace
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    shared-library  #REQUIRED
+    version  #REQUIRED
+    c:identifier-prefixes  #REQUIRED
+    c:symbol-prefixes  #REQUIRED>
+
+<!ELEMENT ns1:bitfield (source-position,member+)>
+<!ATTLIST ns1:bitfield
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    c:type  #REQUIRED>
+
+<!ELEMENT ns1:callback (source-position,return-value,parameters)>
+<!ATTLIST ns1:callback
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    c:type  #REQUIRED>
+
+<!ELEMENT ns1:constant (source-position,type)>
+<!ATTLIST ns1:constant
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    value  #REQUIRED
+    c:type  #REQUIRED>
+
+<!ELEMENT ns1:enumeration (source-position,member+)>
+<!ATTLIST ns1:enumeration
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    c:type  #REQUIRED>
+
+<!ELEMENT ns1:union (doc,source-position)>
+<!ATTLIST ns1:union
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    c:type  #REQUIRED>
+
+<!ELEMENT ns1:function (doc?,doc-version?,source-position,return-value,parameters?)>
+<!ATTLIST ns1:function
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    introspectable  #IMPLIED
+    name  #REQUIRED
+    c:identifier  #REQUIRED>
+
+<!ELEMENT ns1:doc-version (#PCDATA)>
+<!ATTLIST ns1:doc-version
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xml:space  #REQUIRED>
+
+<!ELEMENT ns1:source-position EMPTY>
+<!ATTLIST ns1:source-position
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    filename CDATA #REQUIRED
+    line  #REQUIRED>
+
+<!ELEMENT ns1:type EMPTY>
+<!ATTLIST ns1:type
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    c:type CDATA #IMPLIED>
+
+<!ELEMENT ns1:member (doc)?>
+<!ATTLIST ns1:member
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    name  #REQUIRED
+    value  #REQUIRED
+    c:identifier  #REQUIRED>
+
+<!ELEMENT ns1:doc (#PCDATA)>
+<!ATTLIST ns1:doc
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    filename CDATA #REQUIRED
+    line  #REQUIRED
+    xml:space  #REQUIRED>
+
+<!ELEMENT ns1:return-value (doc?,(array|type))>
+<!ATTLIST ns1:return-value
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    nullable  #IMPLIED
+    transfer-ownership  #IMPLIED>
+
+<!ELEMENT ns1:parameters (parameter)+>
+<!ATTLIST ns1:parameters
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'>
+
+<!ELEMENT ns1:parameter (varargs?,doc?,(array|type)?)>
+<!ATTLIST ns1:parameter
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    allow-none  #IMPLIED
+    caller-allocates  #IMPLIED
+    closure  #IMPLIED
+    direction  #IMPLIED
+    name  #REQUIRED
+    nullable  #IMPLIED
+    optional  #IMPLIED
+    transfer-ownership  #REQUIRED>
+
+<!ELEMENT ns1:varargs EMPTY>
+<!ATTLIST ns1:varargs
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'>
+
+<!ELEMENT ns1:array (type)>
+<!ATTLIST ns1:array
+    xmlns:ns1 CDATA #FIXED 'http://www.gtk.org/introspection/core/1.0'
+    xmlns:c CDATA #FIXED 'http://www.gtk.org/introspection/c/1.0'
+    length  #IMPLIED
+    zero-terminated  #REQUIRED
+    c:type CDATA #REQUIRED>

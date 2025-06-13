@@ -17,11 +17,13 @@ export enum GirElementKind {
   Field = 'field',
   Signal = 'signal',
   Callback = 'callback',
-  Member = 'member'
+  Member = 'member',
+  Bitfield = 'bitfield',
+  Union = 'union',
 }
 
 export enum GirComplexKind {
   Class = 'class',
   Interface = 'interface',
-  Record = 'record'
+  Record = 'record',
 }

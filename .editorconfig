@@ -9,3 +9,20 @@ indent_size = 2
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
+
+[*.{xml,gir}]
+trim_trailing_whitespace = false
+max_line_length = 1000
+
+[*.{diff,patch}]
+trim_trailing_whitespace = false
+
+[*.{py,pyi}]
+indent_size = 4
+
+[*.{ts,tsx,js,svelte}]
+indent_size = 4
+
+[Makefile]
+indent_style = tab
+indent_size = 4
